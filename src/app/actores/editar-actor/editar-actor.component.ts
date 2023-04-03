@@ -13,6 +13,7 @@ export class EditarActorComponent implements OnInit {
   modelo: actorCreacionDTO = {
     nombre: 'Felipe',
     fechaNacimiento: new Date(),
+    foto: ''
   };
 
   ngOnInit(): void {

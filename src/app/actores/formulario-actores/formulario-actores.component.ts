@@ -10,13 +10,27 @@ import { actorCreacionDTO } from '../actor';
 export class FormularioActoresComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {}
 
-  form!: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    nombre: [
+      '',
+      {
+        validators: [Validators.required],
+      },
+    ],
+    fechaNacimiento: '',
+    foto: '',
+    biografia: '',
+  });
 
   @Input()
-  modelo!: actorCreacionDTO;
+  modelo: actorCreacionDTO = {
+    nombre: '',
+    fechaNacimiento: new Date(),
+    foto: '',
+  };
 
   @Output()
-  submit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
+  OnSubmit: EventEmitter<actorCreacionDTO> = new EventEmitter<actorCreacionDTO>();
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -27,6 +41,8 @@ export class FormularioActoresComponent implements OnInit {
         },
       ],
       fechaNacimiento: '',
+      foto: '',
+      biografia: '',
     });
 
     //Llenar el formulario a partir del modelo(actor)
@@ -37,6 +53,14 @@ export class FormularioActoresComponent implements OnInit {
 
   // Emitir hacia el componente padre el formulario de actores
   onSubmit() {
-    this.submit.emit(this.form.value);
+    this.OnSubmit.emit(this.form.value);
+  }
+
+  archivoSeleccionado(file: any) {
+    this.form.get('foto')?.setValue(file);
+  }
+
+  cambioMarkdown(texto: string) {
+    this.form.get('biografia')?.setValue(texto);
   }
 }
