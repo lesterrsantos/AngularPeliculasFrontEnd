@@ -12,7 +12,7 @@ export class InputImgComponent implements OnInit {
   imagenBase64: string = '';
 
   @Input()
-  urlImagenActual: string = '';
+  urlImagenActual: any = '';
 
   @Output()
   archivoSeleccionado: EventEmitter<File> = new EventEmitter<File>();
