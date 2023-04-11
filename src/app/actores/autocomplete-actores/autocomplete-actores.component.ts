@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-autocomplete-actores',
@@ -13,14 +14,19 @@ export class AutocompleteActoresComponent implements OnInit {
   control: FormControl = new FormControl();
 
   actores = [
-    { nombre: 'Tom Holland', foto: '/assets/TomHolland.jpeg' },
-    { nombre: 'Tom Hanks', foto: '/assets/TomHanks.jpeg' },
-    { nombre: 'Samuel L. Jackson', foto: '/assets/Samuel.jpeg' },
+    { nombre: 'Tom Holland', personaje: '', foto: '/assets/TomHolland.jpeg' },
+    { nombre: 'Tom Hanks', personaje: '', foto: '/assets/TomHanks.jpeg' },
+    { nombre: 'Samuel L. Jackson', personaje: '', foto: '/assets/Samuel.jpeg' },
   ];
 
   actoresOriginal = this.actores;
 
-  actoresSeleccionados: any = [];
+  actoresSeleccionados: any[] = [];
+
+  columnasAMostrar = ['imagen', 'nombre', 'personaje', 'acciones'];
+
+  @ViewChild(MatTable)
+  table!: MatTable<any>;
 
   ngOnInit(): void {
     this.control.valueChanges.subscribe((valor) => {
@@ -35,5 +41,14 @@ export class AutocompleteActoresComponent implements OnInit {
     console.log(event.option.value);
     this.actoresSeleccionados.push(event.option.value);
     this.control.patchValue('');
+    if (this.table !== undefined) {
+      this.table.renderRows();
+    }
+  }
+
+  eliminar(actor: { nombre: any }) {
+    const indice = this.actoresSeleccionados.findIndex(a => a.nombre === actor.nombre);
+    this.actoresSeleccionados.splice(indice, 1);
+    this.table.renderRows();
   }
 }
