@@ -1,0 +1,73 @@
+<mat-card>
+  <mat-card-title>
+    {{ title }}
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="reactForm" (ngSubmit)="ProceedSave()">
+      <mat-form-field appearance="fill">
+        <mat-label>Code</mat-label>
+        <input matInput formControlName="code" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <table formArrayName="deladdress">
+        <tbody>
+          <tr
+            *ngFor="let item of deladdress.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <td><input placeholder="Street" formControlName="street" /></td>
+            <td><input placeholder="City" formControlName="city" /></td>
+            <td><input placeholder="State" formControlName="state" /></td>
+            <td><input placeholder="Zip" formControlName="zip" /></td>
+            <td>
+              <button mat-button color="accent" (click)="RemoveItem(i)">
+                (-)
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- <div formArrayName="deladdress">
+        <div *ngFor="let item of deladdress.controls; let i = index">
+          <div [formGroupName]="i" style="background-color: #ccc">
+            <h3>address of {{ i }}</h3>
+            <button mat-raised-button color="accent" (click)="RemoveItem(i)">
+              Remove
+            </button>
+            <mat-form-field appearance="fill">
+              <mat-label>Street</mat-label>
+              <input matInput formControlName="street" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>City</mat-label>
+              <input matInput formControlName="city" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>State</mat-label>
+              <input matInput formControlName="state" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Zip Code</mat-label>
+              <input matInput formControlName="zip" />
+            </mat-form-field>
+          </div>
+        </div>
+      </div> -->
+
+      <div>
+        <a mat-raised-button color="primary" (click)="AddNewRow()">Add New (+)</a>
+      </div>
+
+      <div class="example-button-row" style="margin-top: 5px">
+        <button mat-raised-button color="primary">Submit</button>
+        <button mat-raised-button color="accent">Clear</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

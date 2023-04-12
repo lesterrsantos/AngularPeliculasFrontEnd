@@ -1,0 +1,28 @@
+form {
+  max-width: 880px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-right: 1rem;
+}
+
+.example-button-row {
+  margin-bottom: 1rem;
+}
+
+mat-card-title {
+    color: green;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+mat-card {
+    align-items: center;
+    max-width: 900px;
+    justify-content: center;
+    align-items: center;
+}
