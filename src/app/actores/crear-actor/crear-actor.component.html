@@ -1,3 +1,9 @@
 <h2>Crear Actor</h2>
 
-<app-formulario-actores (OnSubmit)="guardarCambios($event)"></app-formulario-actores>
+<h4>Estado de transaccion: {{ estado | estados }}</h4>
+
+<button mat-flat-button color="accent" (click)="cambiarEstado()">Cambiar estado</button>
+
+<app-formulario-actores
+  (OnSubmit)="guardarCambios($event)"
+></app-formulario-actores>

@@ -38,6 +38,7 @@ import { FormularioPeliculaComponent } from './peliculas/formulario-pelicula/for
 import { SelectorMultipleComponent } from './utilidades/selector-multiple/selector-multiple.component';
 import { AutocompleteActoresComponent } from './actores/autocomplete-actores/autocomplete-actores.component';
 import { DinamicArrayComponent } from './utilidades/dinamic-array/dinamic-array.component';
+import { EstadosPipe } from './utilidades/estados.pipe';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { DinamicArrayComponent } from './utilidades/dinamic-array/dinamic-array.
     SelectorMultipleComponent,
     AutocompleteActoresComponent,
     DinamicArrayComponent,
+    EstadosPipe,
   ],
   imports: [
     BrowserModule,

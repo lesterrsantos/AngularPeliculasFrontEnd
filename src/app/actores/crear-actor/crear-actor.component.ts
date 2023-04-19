@@ -11,7 +11,17 @@ export class CrearActorComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  estado = 0;
+
   guardarCambios(actor: actorCreacionDTO) {
     console.log(actor);
+  }
+
+  cambiarEstado() {
+    if (this.estado == 0) {
+      this.estado = 1;
+    } else {
+      this.estado = 0;
+    }
   }
 }
